@@ -1,0 +1,32 @@
+---
+title: "Incarceration Analysis"
+author: "Christopher Ku"
+date: "11/21/2020"
+output: html_document
+---
+```{r setup, include = FALSE}
+source("analysis.R")
+library("knitr")
+library("tidyverse")
+library("ggplot2")
+library("maps")
+library("mapproj")
+```
+
+## Introduction + Summary Information
+
+
+## Trends over time chart
+```{r,echo=FALSE, message=FALSE,eval=TRUE}
+national_jail_pop_by_year_graph
+```
+
+## Variable comparison chart
+```{r,echo=FALSE, message=FALSE,eval=TRUE}
+county_adm_and_dis
+```
+
+## Map
+```{r,echo=FALSE, message=FALSE,eval=TRUE}
+counties_map
+```
