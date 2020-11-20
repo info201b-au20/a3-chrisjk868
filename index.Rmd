@@ -14,19 +14,37 @@ library("mapproj")
 ```
 
 ## Introduction + Summary Information
+Currently, the US contains one of the world's highest rates of incarceration and with the large amounts of prisons within the United States. Questions are raised towards the effectiveness of the criminal justice system and the proper allocation of resources. For my analysis I decided to analyze 5 different values. Them individually being the Highest jail population by state by most recent year, Lowest jail population by state by most recent year, Highest incarceration rate by state, Lowest jail incarceration rate by state, and lastly the State with the highest discrepancy in race population in the most recent year. The reason why I think the summary information of the highest/lowest jail population by state in the most recent year, is because this allows us to truly identify which regions within the US contains the lowest density of incarceration which will in turn allow a more effective decision making process in terms of the most appropriate places for prison construction. Secondly I believe the summary information of the Highest/Lowest incarceration rate by state is also very relevant, because it reflects on areas within the United States where crime is common and needs to be addressed especially if the rate of incarceration is in a clear positive rate. Lastly calculating the highest discrepancy in race population within prisons in the most recent year is also very crucial as it presents racial inequality and issues within certain areas in the US regarding the criminal justice system.
 
+Calculated Values:
+
+1. Highest jail population by state by most recent year: State(CA), Year(2018), Jail Population(39557045)
+
+2. Lowest jail population by state by most recent year: State(WY), Year(2018), Jail Population(577737)
+
+3. Highest incarceration rate by state: State(CA), Incarceration Rate(406484.1 inmates / year)
+
+4. Lowest jail incarceration rate by state: State(DC), Incarceration Rate(-1104.396 inmates / year)
+
+5. State with the highest discrepancy in race population in the most recent year: State(CA), Standard Deviation(13669)
 
 ## Trends over time chart
 ```{r,echo=FALSE, message=FALSE,eval=TRUE}
 national_jail_pop_by_year_graph
 ```
 
+Within the graph above it plots the national jail population count from 1990 to 1999 (10 years). The plot above is meaningful as it shows that jail population growth within the United States as a whole varies linearly with time. This suggests that there is still steady occurrence of crime within the United States as a whole.
+
 ## Variable comparison chart
 ```{r,echo=FALSE, message=FALSE,eval=TRUE}
 county_adm_and_dis
 ```
 
+The plot above represents the the total Discharges of prisoners against the total Admissions of prisoners in 2018 within each county. This shows that the amount of discharges and admissions within each county is directly correlated with each other showing that there isn't a larger amount of admissions than discharges which also correlates well with the jail population graph before, inferring a steady growth in incarceration within the US as a whole.
+
 ## Map
 ```{r,echo=FALSE, message=FALSE,eval=TRUE}
 counties_map
 ```
+
+The heatmap above shows the relative jail populations of each county within the US. Red means a high jail population and blue means a low jail population. This map is especially interesting and significant, because it shows that there's very high concentration of jail population within LA County and the rest of the US counties are all relatively constant. The suprising fact is that LA county alone is large than almost every county within the US by a factor of almost 10.
