@@ -49,33 +49,71 @@ state_race_pop_std_dev <- state_race_pop %>%
 # 1. Highest jail population by state by most recent year
 state_highest_pop_recent <- state_total_pop_recent[which.max(state_total_pop_recent$total_jail_population),]
 
+state_highest_pop_recent_info <- list()
+state_highest_pop_recent_info$state <- state_highest_pop_recent$state[1]
+state_highest_pop_recent_info$year <- state_highest_pop_recent$current_year[1]
+state_highest_pop_recent_info$population <- state_highest_pop_recent$total_jail_population[1]
+
 # 2. Lowest jail population by state by most recent year
 state_lowest_pop_recent <- state_total_pop_recent[which.min(state_total_pop_recent$total_jail_population),]
+
+state_lowest_pop_recent_info <- list()
+state_lowest_pop_recent_info$state <- state_lowest_pop_recent$state[1]
+state_lowest_pop_recent_info$year <- state_lowest_pop_recent$current_year[1]
+state_lowest_pop_recent_info$population <- state_lowest_pop_recent$total_jail_population[1]
 
 # 3. Highest incarceration rate by state
 state_max_incareceration_rate <- state_incarceration_rate[which.max(state_incarceration_rate$incarceration_rate),]
 
+state_max_incareceration_rate_info <- list()
+state_max_incareceration_rate_info$state <- state_max_incareceration_rate$state[1]
+state_max_incareceration_rate_info$rate <- state_max_incareceration_rate$incarceration_rate[1]
+
 # 4. Lowest jail incarceration rate by state
 state_min_incareceration_rate <- state_incarceration_rate[which.min(state_incarceration_rate$incarceration_rate),]
+
+state_min_incareceration_rate_info <- list()
+state_min_incareceration_rate_info$state <- state_min_incareceration_rate$state[1]
+state_min_incareceration_rate_info$rate <- state_min_incareceration_rate$incarceration_rate[1]
 
 # 5. State with the highest discrepancy in race population in the most recent year
 state_max_std_dev_recent <- state_race_pop_std_dev[which.max(state_race_pop_std_dev$std_dev),]
 
+state_max_std_dev_recent_info <- list()
+state_max_std_dev_recent_info$state <- state_max_std_dev_recent$state[1]
+state_max_std_dev_recent_info$rate <- state_max_std_dev_recent$std_dev[1]
+
 # Variables to analyze
-# Trends over time chart: How does national jail population grow over time from 1970 to 2018 in the US?
+# Trends over time chart: How does National Jail Population by ethnicity grow over time from 1990 to 1999 in the US?
 national_jail_pop_by_year <- incarceration %>%
   group_by(year) %>%
-  summarise(national_jail_pop = sum(total_pop)) %>%
+  summarise(aapi_pop = sum(aapi_jail_pop, na.rm = T),
+            black_pop = sum(black_jail_pop, na.rm = T),
+            latin_pop = sum(latinx_jail_pop, na.rm = T),
+            native_pop = sum(native_jail_pop, na.rm = T),
+            white_pop = sum(white_jail_pop, na.rm = T)) %>%
   filter(year %in% c(1990 : 1999))
 
+colors <- c("Asian American Pacific Islander" = "red", "African American" = "blue", "Latino" = "green", "Native American" = "purple", "White" = "black")
+
 national_jail_pop_by_year_graph <- ggplot(data = national_jail_pop_by_year) +
-  geom_point(mapping = aes(x = year, y = national_jail_pop)) +
-  geom_smooth(mapping = aes(x = year, y = national_jail_pop)) +
+  geom_point(mapping = aes(x = year, y = aapi_pop)) +
+  geom_smooth(mapping = aes(x = year, y = aapi_pop, color = "Asian American Pacific Islander")) +
+  geom_point(mapping = aes(x = year, y = black_pop)) +
+  geom_smooth(mapping = aes(x = year, y = black_pop, color = 'African American')) +
+  geom_point(mapping = aes(x = year, y = latin_pop)) +
+  geom_smooth(mapping = aes(x = year, y = latin_pop, color = 'Latino')) +
+  geom_point(mapping = aes(x = year, y = native_pop)) +
+  geom_smooth(mapping = aes(x = year, y = native_pop, color = 'Native American')) +
+  geom_point(mapping = aes(x = year, y = white_pop)) +
+  geom_smooth(mapping = aes(x = year, y = white_pop, color = 'White')) +
   labs(
     title = "National Jail Population against time from 1990 to 1999",
     x = "Year",
-    y = "National jail population"
-  )
+    y = "National Jail Population by ethnicity",
+    color = "Legend"
+  ) + 
+  scale_color_manual(values = colors)
 
 # Variable comparison chart
 # Jail admission count vs Jail discharge count on the national level in 2018 by county.

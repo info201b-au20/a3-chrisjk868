@@ -18,15 +18,39 @@ Currently, the US contains one of the world's highest rates of incarceration and
 
 Calculated Values:
 
-1. Highest jail population by state by most recent year: State(CA), Year(2018), Jail Population(39557045)
+**Highest jail population by state by most recent year:**
 
-2. Lowest jail population by state by most recent year: State(WY), Year(2018), Jail Population(577737)
+State: `r state_highest_pop_recent_info$state`
 
-3. Highest incarceration rate by state: State(CA), Incarceration Rate(406484.1 inmates / year)
+Year: `r state_highest_pop_recent_info$year`
 
-4. Lowest jail incarceration rate by state: State(DC), Incarceration Rate(-1104.396 inmates / year)
+Population: `r state_highest_pop_recent_info$population`
 
-5. State with the highest discrepancy in race population in the most recent year: State(CA), Standard Deviation(13669)
+**Lowest jail population by state by most recent year:**
+
+State: `r state_lowest_pop_recent_info$state`
+
+Year: `r state_lowest_pop_recent_info$year`
+
+Population: `r state_lowest_pop_recent_info$population`
+
+**Highest incarceration rate by state:**
+
+State: `r state_max_incareceration_rate_info$state`
+
+Incarceration Rate: `r format(state_max_incareceration_rate_info$rate, scientific = F)`
+
+**Lowest jail incarceration rate by state:**
+
+State: `r state_min_incareceration_rate_info$state`
+
+Incarceration Rate: `r state_min_incareceration_rate_info$rate`
+
+**State with the highest discrepancy in race population in the most recent year:**
+
+State: `r state_min_incareceration_rate_info$rate`
+
+Standard Deviation: `r format(state_max_std_dev_recent_info$rate, scientific = F)`
 
 ## Trends over time chart
 ```{r,echo=FALSE, message=FALSE,eval=TRUE}
